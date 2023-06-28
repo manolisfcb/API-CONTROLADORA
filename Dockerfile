@@ -1,12 +1,11 @@
 FROM python:3.7.2-alpine3.9
-
-COPY src .
-
+WORKDIR /app
+COPY src/requirements.txt .
 RUN pip install -r requirements.txt
 
-RUN python consumer.py
+COPY src/ .
 
 EXPOSE 5000
 
-CMD ["flask", "run", "--host=localhost", "--port=5000"]
+CMD ["python", "app.py" ]
 

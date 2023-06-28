@@ -15,13 +15,13 @@ channel = connection.channel()
 
 channel.exchange_declare(exchange='file_unzip2', exchange_type=ExchangeType.topic)
 
-channel.queue_declare(queue='api_controladora_')
+channel.queue_declare(queue='api')
 
-channel.queue_bind(exchange='file_unzip2', queue='api_controladora_', routing_key='file_unzip_only')
-
-
+channel.queue_bind(exchange='file_unzip2', queue='api', routing_key='file_unzip_only')
 
 
-channel.basic_consume(queue='api_controladora_', on_message_callback=callback_from_file_handler, auto_ack=True)
+
+
+channel.basic_consume(queue='api', on_message_callback=callback_from_file_handler, auto_ack=True)
 
 channel.start_consuming()
